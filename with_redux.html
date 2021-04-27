@@ -14,15 +14,23 @@
         <div id = "green"></div>
         <div id = "blue"></div>
         <script>
-            function reducer(state, action){                
-                if(state == undefined){//state 초기화
+            function reducer(state, action){      
+                console.log(state,action);          
+                if(state == undefined)//state 초기화
+                {
                     return {color:'yellow'}
                 }
-                
+                let newState;
+                //불변성을 위해 state를 복제하여 수정
+                if(action.type === 'CHANGE_COLOR')
+                {
+                    newState = Object.assign({},state,{color:action.color});                   
+                }
+                return newState;
             }
-            //state 초기화
+            //store 생성
             let store = Redux.createStore(reducer);
-            //
+            //getState로 state 호출
             console.log(store.getState());            
             function red(){
                 let state = store.getState();
@@ -30,9 +38,7 @@
                     <div class ="container" id="component_red" style="background-color:${state.color}">
                         <h1>red</h1>
                         <input type = "button" value = "fire" onclick ="
-                        document.querySelector('#component_red').style.backgroundColor = 'red';
-                        document.querySelector('#component_green').style.backgroundColor = 'red';
-                        document.querySelector('#component_blue').style.backgroundColor = 'red';
+                            store.dispatch({type:'CHANGE_COLOR', color:'red'});
                         ">
                     </div>
                 `;
