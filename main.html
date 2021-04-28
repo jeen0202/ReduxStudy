@@ -49,6 +49,10 @@
 <ul>
     <li><a onclick ="
         event.preventDefault();
+        store.dispatch({
+            type:'CHANGE_MODE',
+            mode:'create'
+        })
         let action = {type:'CREATE'}
         "
         href="/create">create</a></li>
@@ -134,7 +138,7 @@
             }
             let newState = {};
             if(action.type ==='SELECT'){
-                newState = Object.assign({},state,{seleted_id:action.id});
+                newState = Object.assign({},state,{seleted_id:action.id,mode:'read'});
             }else if(action.type ==='CREATE'){
                 let newContents = state.contents.concat();
                 let newMaxId = state.max_id+1;
@@ -155,6 +159,10 @@
                 newState = Object.assign({},state,{
                     contents:newContents,
                     mode:'welcome'
+                })
+            }else if(action.type === 'CHANGE_MODE'){
+                newState= Object.assign({},state,{
+                    mode:action.mode
                 })
             }
             console.log(action,state,newState);
