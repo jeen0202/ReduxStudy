@@ -22,14 +22,17 @@
                 }
                 let newState;
                 //불변성을 위해 state를 복제하여 수정
-                if(action.type === 'CHANGE_COLOR')
+                if(action.type === 'CHANGE_COLOR')  
                 {
                     newState = Object.assign({},state,{color:action.color});                   
                 }
                 return newState;
             }
             //store 생성
-            let store = Redux.createStore(reducer);
+            let store = Redux.createStore(
+            reducer,
+            window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+            );
             //getState로 state 호출
             console.log(store.getState());            
             function red(){

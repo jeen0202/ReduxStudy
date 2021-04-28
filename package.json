@@ -1,5 +1,8 @@
 {
   "dependencies": {
     "redux": "^4.1.0"
+  },
+  "devDependencies": {
+    "remote-redux-devtools": "^0.5.16"
   }
 }
