@@ -34,3 +34,11 @@ React의 Component State를 별도의 전용 장소인 store에 보관하여 관
 **action** : dispatch 함수를 통해 전달되는 객체 
 
 **Subscribe** : State값이 변경될때마다 render를 호출하는 함수 getState : render에서 State의 값을 가져오기 위한 함수
+
+## React-Redux 연동
+Redux를 사용하여 React의 State를 효율적으로 관리할 수 있다.
+이때 store를 다루는 Component는 Store만을 담당하는 container Component와 기능을 담당하는 Presentation Component로 구분하여 재사용성을 높일 수 있다.
+
+react-redux 패지키를 사용하여 복잡한 구성을 간단하게 처리할 수 있다.
+Provider Component에 App Component를 종속시켜 store를 전역으로 처리 할 수 있다.
+connect()() : connect()함수를 통해 반환된 함수가 Component를 매개변수로 받아 presentation component를 생성
